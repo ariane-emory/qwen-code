@@ -412,7 +412,8 @@ export class ShellTool extends BaseDeclarativeTool<
               '(OPTIONAL) Directory to run the command in, if not the project root directory. Must be relative to the project root directory and must already exist.',
           },
         },
-        required: ['command', 'is_background'],
+        required: ['command'],
+        // required: ['command', 'is_background'],
       },
       false, // output is not markdown
       true, // output can be updated
