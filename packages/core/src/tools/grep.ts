@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import fs from 'fs';
+// import fs from 'fs';
 import fsPromises from 'fs/promises';
 import path from 'path';
 import { EOL } from 'os';
@@ -95,10 +95,10 @@ class GrepToolInvocation extends BaseToolInvocation<
 
     // Check existence and type after resolving
     try {
-      const stats = fs.statSync(targetPath);
-      if (!stats.isDirectory()) {
-        throw new Error(`Path is not a directory: ${targetPath}`);
-      }
+      // const stats = fs.statSync(targetPath);
+      // if (!stats.isDirectory()) {
+      //   throw new Error(`Path is not a directory: ${targetPath}`);
+      // }
     } catch (error: unknown) {
       if (isNodeError(error) && error.code !== 'ENOENT') {
         throw new Error(`Path does not exist: ${targetPath}`);
@@ -651,10 +651,10 @@ export class GrepTool extends BaseDeclarativeTool<GrepToolParams, ToolResult> {
 
     // Check existence and type after resolving
     try {
-      const stats = fs.statSync(targetPath);
-      if (!stats.isDirectory()) {
-        throw new Error(`Path is not a directory: ${targetPath}`);
-      }
+      // const stats = fs.statSync(targetPath);
+      // if (!stats.isDirectory()) {
+      //   throw new Error(`Path is not a directory: ${targetPath}`);
+      // }
     } catch (error: unknown) {
       if (isNodeError(error) && error.code !== 'ENOENT') {
         throw new Error(`Path does not exist: ${targetPath}`);
