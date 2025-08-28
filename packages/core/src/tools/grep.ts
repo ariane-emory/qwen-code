@@ -373,6 +373,12 @@ class GrepToolInvocation extends BaseToolInvocation<
     let strategyUsed = 'none';
 
     try {
+      new RegExp(pattern);
+    } catch (error) {
+      return `Invalid regular expression pattern provided: ${params.pattern}. Error: ${getErrorMessage(error)}`;
+    }
+
+    try {
       // --- Strategy 1: git grep ---
       const isGit = isGitRepository(absolutePath);
       const gitAvailable = isGit && (await this.isCommandAvailable('git'));
@@ -681,11 +687,11 @@ export class GrepTool extends BaseDeclarativeTool<GrepToolParams, ToolResult> {
       return errors;
     }
 
-    try {
-      new RegExp(params.pattern);
-    } catch (error) {
-      return `Invalid regular expression pattern provided: ${params.pattern}. Error: ${getErrorMessage(error)}`;
-    }
+    // try {
+    //   new RegExp(params.pattern);
+    // } catch (error) {
+    //   return `Invalid regular expression pattern provided: ${params.pattern}. Error: ${getErrorMessage(error)}`;
+    // }
 
     // Validate maxResults if provided
     if (params.maxResults !== undefined) {
